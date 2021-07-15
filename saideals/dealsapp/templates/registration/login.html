@@ -1,0 +1,19 @@
+{% extends 'dealsapp/base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+  <h2>Please login: </h2>
+  <h3>(Must be a admin/superuser not for users,(site admin)</h3>
+  {% if form.errors %}
+    <h2>Password/username error</h2>
+  {% endif %}
+
+  <form method="POST" action="{% url 'login' %}">
+  {% csrf_token %}
+      {{form.as_p}}
+
+      <input type="submit" class='btn btn-primary' value="Login" />
+      <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
+{% endblock %}
